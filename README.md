@@ -5,7 +5,7 @@ Projeto Django **real** usado no vídeo "Simple History × Auditlog: qual usar?"
 (`Livro`) para comparar o que cada um guarda, e um script mede o espaço que cada um ocupa no banco.
 As capturas usam o **admin padrão do Django em modo escuro**.
 
-Versões: Django 6.1.1 · django-simple-history 3.13.0 · django-auditlog 3.4.1 · Python 3.12.
+Versões: Django 6.1.1 · django-simple-history 3.13.0 · django-auditlog 3.4.1 · Python 3.14.
 
 ## O que cada pacote rastreia
 
@@ -29,7 +29,7 @@ cp .env.example .env            # ajuste a SECRET_KEY
 uv sync
 uv run python manage.py migrate
 uv run python manage.py popular_loja      # 30 livros, 3 clientes, usuários regis/ana/bruno
-uv run python manage.py runserver 0.0.0.0:8020
+uv run python manage.py runserver 0.0.0.0:8000
 ```
 
 Usuários: `regis / regis123`, `ana / senha123`, `bruno / senha123` (todos superusuários).
@@ -44,6 +44,18 @@ Usuários: `regis / regis123`, `ana / senha123`, `bruno / senha123` (todos super
 | `experimento_tamanho.py` | 1 livro com descrição de ~2 KB + 1000 updates mudando só o preço (rodar com `DATABASE_URL=sqlite:///experimento.sqlite3`). |
 
 Os scripts gravam os resultados na pasta `../captura/` (fora deste repositório).
+
+## Como repetir o experimento de espaço
+
+O experimento usa um banco separado, para não misturar com os dados do admin:
+
+```bash
+export DATABASE_URL=sqlite:///experimento.sqlite3
+uv run python manage.py migrate
+uv run python manage.py popular_loja
+uv run python scripts/experimento_tamanho.py
+unset DATABASE_URL
+```
 
 ## Resultado do experimento de espaço (SQLite, dbstat)
 

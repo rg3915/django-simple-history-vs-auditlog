@@ -4,7 +4,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:8020"
+BASE = "http://127.0.0.1:8000"
 SAIDA = Path(__file__).resolve().parents[2] / "captura"
 
 # (arquivo, url, seletor para esperar, captura de página inteira?)

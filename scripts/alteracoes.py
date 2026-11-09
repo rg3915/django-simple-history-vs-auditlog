@@ -10,8 +10,8 @@ from html.parser import HTMLParser
 
 import requests
 
-LOCAL = "http://127.0.0.1:8020"
-REDE = "http://192.168.18.172:8020"
+LOCAL = "http://127.0.0.1:8000"
+REDE = "http://192.168.18.172:8000"
 USUARIOS = {
     "regis": ("regis123", LOCAL),
     "ana": ("senha123", REDE),
