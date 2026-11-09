@@ -1,8 +1,9 @@
 # django-simple-history × django-auditlog
 
-Projeto Django **real** usado no vídeo comparativo. Nasceu como cópia da Livraria Awesome
-(`~/Movies/awesome_django/projeto`), simplificada: sem unfold, silk, allauth, storages, DRF e
-import-export. As capturas usam o **admin padrão do Django em modo escuro**.
+Projeto Django **real** usado no vídeo "Simple History × Auditlog: qual usar?" do canal
+[Regis do Python](https://www.youtube.com/@RegisdoPython). Os dois pacotes rodam no mesmo modelo
+(`Livro`) para comparar o que cada um guarda, e um script mede o espaço que cada um ocupa no banco.
+As capturas usam o **admin padrão do Django em modo escuro**.
 
 Versões: Django 6.1.1 · django-simple-history 3.13.0 · django-auditlog 3.4.1 · Python 3.12.
 
@@ -42,7 +43,7 @@ Usuários: `regis / regis123`, `ana / senha123`, `bruno / senha123` (todos super
 | `sessao_shell.py` | Roda linhas Python num console interativo do Django e imprime como sessão `>>>` (usado no `sh_asof.txt`). |
 | `experimento_tamanho.py` | 1 livro com descrição de ~2 KB + 1000 updates mudando só o preço (rodar com `DATABASE_URL=sqlite:///experimento.sqlite3`). |
 
-Resultados em `~/Movies/history_vs_auditlog/captura/` (veja `tamanho.txt` e `versoes.txt`).
+Os scripts gravam os resultados na pasta `../captura/` (fora deste repositório).
 
 ## Resultado do experimento de espaço (SQLite, dbstat)
 
