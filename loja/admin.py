@@ -38,11 +38,15 @@ class LogEntryComIPAdmin(LogEntryAdmin):
     list_display = ["created", "resource_url", "action", "msg_short", "user_url", "remote_addr"]
     readonly_fields = [*LogEntryAdmin.readonly_fields, "remote_addr", "changes_json"]
     fieldsets = [
-        (None, {"fields": ["created", "user_url", "remote_addr", "resource_url", "cid"]}),
+        (None, {"fields": ["created", "user_url", "remote_addr", "resource_url"]}),
         ("Mudanças", {"fields": ["action", "msg", "changes_json"]}),
     ]
 
     @admin.display(description="changes (JSON gravado)")
     def changes_json(self, obj):
-        texto = json.dumps(obj.changes, ensure_ascii=False, indent=2)
+        linhas = [
+            f"  {json.dumps(campo)}: {json.dumps(valores, ensure_ascii=False)}"
+            for campo, valores in (obj.changes or {}).items()
+        ]
+        texto = "{\n" + ",\n".join(linhas) + "\n}"
         return format_html('<pre style="margin:0">{}</pre>', texto)
